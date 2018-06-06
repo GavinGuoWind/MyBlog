@@ -25,7 +25,7 @@ SECRET_KEY = '#qqv(+g^h0%1^9roz=hm43w-*y3d_y!t#596gyxzm2ac8nepal'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.hithey.com']
 
 
 # Application definition
