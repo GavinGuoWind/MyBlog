@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import RedirectView
+
 from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', views.blog_index),
+    #定义默认访问路由，表示输入任意url路径
+    path('', RedirectView.as_view(url='blog/')),
 ]

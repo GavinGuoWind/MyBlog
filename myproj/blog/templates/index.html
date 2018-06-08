@@ -1,5 +1,35 @@
-{% for blog in blog_list %}
-<h2>{{ blog.title }}</h2>
-<p>{{ blog.timestamp }}</p>
-<p>{{ blog.body }}</p>
-{% endfor %}
+{% extends "main/base.html" %}
+
+{% block content %}
+    <script type="text/css">
+        .article-list .article-item-box h4 {
+            margin-bottom: 8px;
+            font-size: 20px;
+            line-height: 28px;
+            color: #3d3d3d;
+        }
+    </script>
+    <div class="article-list" style="width: 80%;">
+        {% for blog in blog_list %}
+            <div class="article-item-box csdn-tracking-statistics" data-articleid="43768803">
+                <h4 class="text-truncate">
+                    <a href="https://blog.csdn.net/zhangphil/article/details/43768803" target="_blank">
+                       {{ blog.title }} </a>
+                </h4>
+                <p class="content">
+                    <a href="https://blog.csdn.net/zhangphil/article/details/43768803" target="_blank">
+                        {{ blog.body }}</a>
+                </p>
+                <div class="info-box d-flex align-content-center">
+                    <p>
+                        <span class="date">{{ blog.timestamp }}</span>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+
+{% endblock %}
