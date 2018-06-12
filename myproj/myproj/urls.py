@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.urls import include
 from django.urls import path
 from django.views.generic import RedirectView
 
@@ -24,4 +25,6 @@ urlpatterns = [
     path('blog/', views.blog_index),
     #定义默认访问路由，表示输入任意url路径
     path('', RedirectView.as_view(url='blog/')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('detail/<int:id>/', views.blog_detail),
 ]

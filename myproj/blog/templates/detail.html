@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    <div class="article-item-box csdn-tracking-statistics" data-articleid="43768803">
+        <h2 class="text-truncate">
+            <a target="_blank">
+                {{ blog.title }} </a>
+        </h2>
+        <p class="content">
+            <a target="_blank" style="color: #999">
+                {{ blog.body | safe }}</a>
+        </p>
+    </div>
+
+{% endblock %}

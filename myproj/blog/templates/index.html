@@ -12,17 +12,22 @@
     <div class="article-list" style="width: 80%;">
         {% for blog in blog_list %}
             <div class="article-item-box csdn-tracking-statistics" data-articleid="43768803">
-                <h4 class="text-truncate">
-                    <a href="https://blog.csdn.net/zhangphil/article/details/43768803" target="_blank">
-                       {{ blog.title }} </a>
-                </h4>
+                <h2 class="text-truncate">
+                    <a target="_blank" href="/detail/{{ blog.id }}">
+                        {{ blog.title }} </a>
+                </h2>
                 <p class="content">
-                    <a href="https://blog.csdn.net/zhangphil/article/details/43768803" target="_blank">
-                        {{ blog.body }}</a>
+                    <a target="_blank" style="color: #999">
+                        {{ blog.body | safe }}</a>
+                </p>
+                <p class="content">
+                    {% for img in blog.imglist %}
+                        <img src="{{ img }}" width="150px" height="100px" style="display: inline">
+                    {% endfor %}
                 </p>
                 <div class="info-box d-flex align-content-center">
                     <p>
-                        <span class="date">{{ blog.timestamp }}</span>
+                        <span class="date">{{ blog.createDate }}</span>
                     </p>
                 </div>
             </div>
