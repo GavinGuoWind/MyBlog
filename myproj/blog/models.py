@@ -32,6 +32,7 @@ class BlogsPost(models.Model):
     title = models.CharField(max_length = 150, null=True)  # 博客标题
     body = RichTextField(blank=True, null=True)                   # 博客正文
 
+
 class Comment(models.Model):
     createDate = models.DateTimeField(default=timezone.now)
     updateDate = models.DateTimeField(default=timezone.now)
@@ -44,4 +45,11 @@ class Comment(models.Model):
     voteUp = models.IntegerField(default=0)
     voteDown = models.IntegerField(default=0)
 
+# class Reply(models.Model):
+#     createDate = models.DateTimeField(default=timezone.now)
+#     updateDate = models.DateTimeField(default=timezone.now)
+#     commentId = models.IntegerField(null=True)
+#     replyId = models.IntegerField(null=True)
+#     replyType = models.IntegerField(null=True)
+#     content = models.TextField(null=True)
 

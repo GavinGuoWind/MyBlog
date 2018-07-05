@@ -24,7 +24,7 @@ SECRET_KEY = '2n$2a4c5xie6hn9+o(u#j7zdi6$3a(-yk0m_kb_3ko=u=*c7=c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["www.hithey.com", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["www.hithey.com", "127.0.0.1", "localhost", "localhost:8080"]
 
 # Application definition
 
@@ -36,17 +36,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'ckeditor'
+    'ckeditor',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #跨域请求工具
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'myproj.urls'
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'myproj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['blogfrontend/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +69,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [  ## 添加静态文件路径
+    os.path.join(BASE_DIR, "blogfrontend/dist/static"),
 ]
 
 WSGI_APPLICATION = 'myproj.wsgi.application'
@@ -117,7 +125,7 @@ STATIC_URL = '/static/'
 
 # ckeditor config
 CKEDITOR_UPLOAD_PATH = 'article_files/'
-CKEDITOR_JQUERY_URL ='js/jquery-3.2.1.min.js'
+CKEDITOR_JQUERY_URL = 'js/jquery-3.2.1.min.js'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_CONFIGS = {
     'default': {
@@ -125,7 +133,8 @@ CKEDITOR_CONFIGS = {
         'toolbar_YourCustomToolbarConfig': [
 
             {'name': 'clipboard', 'items': ['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord']},
-            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']},
             {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'Smiley']},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'editing', 'items': ['Find', 'Replace', '-']},
@@ -161,3 +170,34 @@ CKEDITOR_CONFIGS = {
 }
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_BROWSE_SHOW_DIRS = True
+
+#跨域增加忽略
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    '*'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)
+
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'Pragma',
+)

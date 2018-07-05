@@ -11,5 +11,15 @@
                 {{ blog.body | safe }}</a>
         </p>
     </div>
+    {% for comment in comments %}
+        <div class="info-box d-flex align-content-center">
+            <p>
+                留言:
+            </p>
+            <p>
+                <span class="date">{{ comment.text }}</span>
+            </p>
+        </div>
+    {% endfor %}
 
 {% endblock %}

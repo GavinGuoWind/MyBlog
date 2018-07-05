@@ -12,7 +12,12 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/blogfrontend/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/nuxt/.nuxt" />
+      <excludeFolder url="file://$MODULE_DIR$/nuxt/node_modules" />
+    </content>
+    <content url="file://$MODULE_DIR$/blogfrontend/node_modules" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

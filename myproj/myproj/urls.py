@@ -17,14 +17,20 @@ from django.contrib import admin
 from django.urls import include
 from django.urls import path
 from django.views.generic import RedirectView
+from django.views.generic import TemplateView
 
 from blog import views
+from blog import comment
+from blog.controller import blogsPostController
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', views.blog_index),
-    #定义默认访问路由，表示输入任意url路径
-    path('', RedirectView.as_view(url='blog/')),
+    # 定义默认访问路由，表示输入任意url路径
+    # path('', RedirectView.as_view(url='blog/')),
+    path(r'', TemplateView.as_view(template_name="index.html")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('detail/<int:id>/', views.blog_detail),
+    path('blogsPost/blogsPost/<int:id>/', blogsPostController.blogsPost),
+    path(r'comment/', comment.comment),
+    path(r'blogsPost/blogsPosts', blogsPostController.blogsPosts),
 ]

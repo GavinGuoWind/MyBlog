@@ -1,6 +1,6 @@
 # coding=UTF-8
 from django.shortcuts import render
-from blog.models import BlogsPost
+from blog.models import BlogsPost, Comment
 import re;
 
 # 需要转意的字符* . ? + $ ^ [ ] ( ) { } | \ /
@@ -23,4 +23,5 @@ def blog_index(request):
 
 def blog_detail(request, id):
     blog = BlogsPost.objects.get(id = id);
-    return render(request, 'detail.html', {'blog':blog})
+    comments = Comment.objects.filter(content_id = id);
+    return render(request, 'detail.html', {'blog':blog, 'comments': comments})
